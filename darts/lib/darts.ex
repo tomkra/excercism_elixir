@@ -6,8 +6,13 @@ defmodule Darts do
   """
   @spec score(position) :: integer
   def score({x, y}) do
-    case {x, y} do
-      {x, y} when x > 10 or y > 10 -> 0
+    distance = :math.sqrt(x**2 + y**2)
+
+    cond do
+      distance > 10 -> 0
+      distance > 5 -> 1
+      distance > 1 -> 5
+      true -> 10
     end
   end
 end
